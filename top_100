@@ -164,3 +164,33 @@ peliculas=> SELECT pelicula FROM peliculas WHERE año_estreno >= 1990 AND año_e
 
 peliculas=> SELECT peliculas.pelicula, peliculas.año_estreno, reparto.actor FROM peliculas INNER JOIN reparto ON peliculas.id = reparto.pelicula_id WHERE peliculas.año_estreno = 2001;
 
+
+10. Listar los actores de la película más nueva
+
+eliculas=> SELECT reparto.actor FROM reparto WHERE pelicula_id IN (SELECT id FROM peliculas ORDER BY año_estreno DESC LIMIT 1);
+        actor         
+----------------------
+ Christian Bale
+ Heath Ledger
+ Aaron Eckhart
+ Michael Caine
+ Gary Oldman
+ Maggie Gyllenhaal
+ Morgan Freeman
+ Eric Roberts
+ Cillian Murphy
+ Anthony Michael Hall
+ Michael Jai White
+ William Fichtner
+ Edison Chen
+ Monique Curnen
+ Chin Han
+ Nestor Carbonell
+ Ritchie Coster
+ Keith Szarabajka
+ Colin McFarlane
+ Melinda McGraw
+ Nathan Gamble
+ Michael Vieau
+(22 rows)
+
