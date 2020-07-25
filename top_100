@@ -158,3 +158,9 @@ peliculas=> SELECT pelicula FROM peliculas WHERE año_estreno >= 1990 AND año_e
  Uno de los nuestros
 (30 rows)
 
+
+9. Listar el reparto de las películas lanzadas el año 2001
+
+
+peliculas=> SELECT peliculas.pelicula, peliculas.año_estreno, reparto.actor FROM peliculas INNER JOIN reparto ON peliculas.id = reparto.pelicula_id WHERE peliculas.año_estreno = 2001;
+
