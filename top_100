@@ -1,0 +1,52 @@
+1. Crear base de datos llamada películas
+
+eva=> CREATE DATABASE peliculas;
+CREATE DATABASE
+
+eva=> \c peliculas;
+You are now connected to database "peliculas" as user "eva".
+peliculas=>
+
+2. Revisar los archivos peliculas.csv y reparto.csv para crear las tablas correspondientes,
+determinando la relación entre ambas tablas.
+
+peliculas=> CREATE TABLE peliculas(
+peliculas(> id SERIAL,
+peliculas(> pelicula VARCHAR,
+peliculas(> año_estreno INT,
+peliculas(> director VARCHAR,
+peliculas(> PRIMARY KEY(id));
+CREATE TABLE
+peliculas=> 
+
+peliculas=> SELECT * FROM peliculas;
+ id | pelicula | año_estreno | director 
+----+----------+-------------+----------
+(0 rows)
+
+peliculas=> 
+
+peliculas=> CREATE TABLE reparto(
+peliculas(> id SERIAL PRIMARY KEY,
+peliculas(> pelicula_id INT,
+peliculas(> actor VARCHAR,
+peliculas(> FOREIGN KEY (pelicula_id) REFERENCES peliculas (id));
+CREATE TABLE
+peliculas=> SELECT * FROM reparto;
+ id | pelicula_id | actor 
+----+-------------+-------
+(0 rows)
+
+
+3. Cargar ambos archivos a su tabla correspondiente 
+
+peliculas-> \copy peliculas FROM '/home/eva/Descargas/ApoyoDesafío2Top100/peliculas.csv' csv header
+COPY 100
+
+peliculas=> \copy reparto (pelicula_id, actor) FROM '/home/eva/Descargas/ApoyoDesafío2Top100/reparto.csv' csv;
+COPY 1051
+
+peliculas=> SELECT * FROM reparto
+
+4. Listar todos los actores que aparecen en la película "Titanic", indicando el título de la película,
+año de estreno, director y todo el reparto.
